@@ -28,8 +28,13 @@ class More extends StatelessWidget {
               )),
             ),
             ListTile(
-              leading: const Icon(Icons.wallet),
-              title: const Text("Wallet"),
+              leading: const Icon(Icons.newspaper_rounded),
+              title: const Text("Articles"),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.calculate_rounded),
+              title: const Text("Emissions Calculator"),
               onTap: () {},
             ),
             const Spacer(flex: 1),

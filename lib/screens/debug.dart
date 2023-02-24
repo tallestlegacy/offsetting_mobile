@@ -1,5 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import "package:cloud_firestore/cloud_firestore.dart";
 
 class DebugScreen extends StatelessWidget {
   const DebugScreen({super.key});
@@ -7,32 +8,56 @@ class DebugScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: SfCartesianChart(
-              // Initialize category axis
-              primaryXAxis: CategoryAxis(),
-              series: <LineSeries<SalesData, String>>[
-                LineSeries<SalesData, String>(
-                    // Bind data source
-                    dataSource: <SalesData>[
-                      SalesData('Jan', 35),
-                      SalesData('Feb', 28),
-                      SalesData('Mar', 34),
-                      SalesData('Apr', 32),
-                      SalesData('May', 40)
-                    ],
-                    xValueMapper: (SalesData sales, _) => sales.year,
-                    yValueMapper: (SalesData sales, _) => sales.sales)
-              ]),
-        ),
+      appBar: AppBar(
+        title: const Text("Debug"),
       ),
+      body: true
+          ? Center(
+              child: Text(FirebaseAuth.instance.currentUser!.toString()),
+            )
+
+          // ignore: dead_code
+          : StreamBuilder(
+              stream:
+                  FirebaseFirestore.instance.collection("debug").snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return const Text('Something went wrong');
+                }
+
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Text("Loading");
+                }
+
+                if (snapshot.hasData) {
+                  return ListView(
+                    children:
+                        snapshot.data!.docs.map((DocumentSnapshot document) {
+                      Map<String, dynamic> data =
+                          document.data()! as Map<String, dynamic>;
+                      return ListTile(
+                        title: Text(data["bandName"].toString()),
+                        subtitle: Text("Rating => ${data["rating"]}"),
+                        onTap: () {
+                          FirebaseFirestore.instance
+                              .runTransaction((transaction) async {
+                            DocumentSnapshot freshSnapshot =
+                                await transaction.get(document.reference);
+                            await transaction.update(
+                              freshSnapshot.reference,
+                              {
+                                "rating": freshSnapshot["rating"] + 1,
+                              },
+                            );
+                          });
+                        },
+                      );
+                    }).toList(),
+                  );
+                }
+
+                return const Text("...");
+              }),
     );
   }
-}
-
-class SalesData {
-  SalesData(this.year, this.sales);
-  final String year;
-  final double sales;
 }

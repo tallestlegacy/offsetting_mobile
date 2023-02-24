@@ -31,19 +31,19 @@ class _AppState extends State<App> {
       bottomNavigationBar: NavigationBar(
           destinations: const [
             NavigationDestination(
-              icon: Icon(Icons.explore),
+              icon: Icon(Icons.explore_rounded),
               label: 'Projects',
             ),
             NavigationDestination(
-              icon: Icon(Icons.bar_chart),
+              icon: Icon(Icons.bar_chart_rounded),
               label: 'Data',
             ),
             NavigationDestination(
-              icon: Icon(Icons.credit_card),
+              icon: Icon(Icons.credit_card_rounded),
               label: 'Credits',
             ),
             NavigationDestination(
-              icon: Icon(Icons.more_horiz),
+              icon: Icon(Icons.more_horiz_rounded),
               label: 'More',
             ),
           ],

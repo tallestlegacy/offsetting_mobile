@@ -4,7 +4,13 @@ import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 class OSMMap extends StatelessWidget {
   final double lat;
   final double lon;
-  const OSMMap({super.key, required this.lat, required this.lon});
+  final String locationName;
+  const OSMMap({
+    super.key,
+    required this.lat,
+    required this.lon,
+    required this.locationName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,44 +22,49 @@ class OSMMap extends StatelessWidget {
       ),
     );
 
-    return OSMFlutter(
-      controller: controller,
-      trackMyPosition: false,
-      initZoom: 10,
-      stepZoom: 1.0,
-      userLocationMarker: UserLocationMaker(
-        personMarker: const MarkerIcon(
-          icon: Icon(
-            Icons.location_history_rounded,
-            color: Colors.red,
-            size: 48,
-          ),
-        ),
-        directionArrowMarker: const MarkerIcon(
-          icon: Icon(
-            Icons.double_arrow,
-            size: 48,
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(locationName),
       ),
-      roadConfiguration: RoadConfiguration(
-        startIcon: const MarkerIcon(
-          icon: Icon(
-            Icons.person,
-            size: 64,
-            color: Colors.brown,
+      body: OSMFlutter(
+        controller: controller,
+        trackMyPosition: false,
+        initZoom: 10,
+        stepZoom: 1.0,
+        userLocationMarker: UserLocationMaker(
+          personMarker: const MarkerIcon(
+            icon: Icon(
+              Icons.location_history_rounded,
+              color: Colors.red,
+              size: 48,
+            ),
+          ),
+          directionArrowMarker: const MarkerIcon(
+            icon: Icon(
+              Icons.double_arrow,
+              size: 48,
+            ),
           ),
         ),
-        roadColor: Colors.yellowAccent,
-      ),
-      markerOption: MarkerOption(
-          defaultMarker: const MarkerIcon(
-        icon: Icon(
-          Icons.person_pin_circle,
-          color: Colors.blue,
-          size: 56,
+        roadConfiguration: RoadConfiguration(
+          startIcon: const MarkerIcon(
+            icon: Icon(
+              Icons.person,
+              size: 64,
+              color: Colors.brown,
+            ),
+          ),
+          roadColor: Colors.yellowAccent,
         ),
-      )),
+        markerOption: MarkerOption(
+            defaultMarker: const MarkerIcon(
+          icon: Icon(
+            Icons.person_pin_circle,
+            color: Colors.blue,
+            size: 56,
+          ),
+        )),
+      ),
     );
     ;
   }

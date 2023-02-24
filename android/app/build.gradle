@@ -76,8 +76,8 @@ dependencies {
 
 android {                                                                                     
   defaultConfig {                                                                             
-    minSdkVersion 19
     multiDexEnabled true
-                                                                      
+    minSdkVersion 19
+    compileSdkVersion 33                              
   }                                                                                           
 }  
