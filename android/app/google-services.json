@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "380166347790",
+    "project_id": "offsetting-abef6",
+    "storage_bucket": "offsetting-abef6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380166347790:android:ca19aa5dd33036c7d5705f",
+        "android_client_info": {
+          "package_name": "com.example.offsetting_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380166347790-kl2a89cc7vdjm22t6npf4vfcg4ont353.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqWDE_CSf9f7qw4fa_dRGzkuMAYVh8OQI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380166347790-kl2a89cc7vdjm22t6npf4vfcg4ont353.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
