@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:offsetting_mobile/screens/app.dart';
 
 class OnBoard extends StatefulWidget {
   OnBoard({super.key});
@@ -83,6 +84,9 @@ class _OnBoardState extends State<OnBoard> {
                 var user = FirebaseAuth.instance.currentUser;
                 await user?.updateDisplayName(displayName);
                 // user?.updatePhoneNumber();
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => const App()),
+                );
               },
               label: const Text("Save"),
               icon: const Icon(Icons.save_rounded),

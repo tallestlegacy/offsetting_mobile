@@ -1,12 +1,16 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pay/pay.dart';
 
-Future<PaymentConfiguration> _googlePayConfigFuture =
-    PaymentConfiguration.fromAsset('json/google_pay.json');
+Future<PaymentConfiguration> _googlePayConfigFuture = PaymentConfiguration.fromAsset('json/google_pay.json');
 
 class GPayButton extends StatelessWidget {
   final List<PaymentItem> paymentItems;
-  const GPayButton({super.key, required this.paymentItems});
+  final Function(Map<String, dynamic>) onPaymentResult;
+  const GPayButton({super.key, required this.paymentItems, required this.onPaymentResult});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +21,7 @@ class GPayButton extends StatelessWidget {
               paymentConfiguration: snapshot.data!,
               paymentItems: paymentItems,
               type: GooglePayButtonType.buy,
-              onPaymentResult: (_) {}, // FIXME
+              onPaymentResult: onPaymentResult,
               loadingIndicator: const Center(
                 child: CircularProgressIndicator(),
               ),

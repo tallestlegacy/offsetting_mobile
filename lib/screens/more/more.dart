@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:offsetting_mobile/components/map.dart';
+import 'package:offsetting_mobile/screens/app_info.dart';
 import 'package:offsetting_mobile/screens/debug.dart';
+import 'package:offsetting_mobile/screens/more/articles/articles.dart';
 import 'package:offsetting_mobile/screens/more/data_sources.dart';
+import 'package:offsetting_mobile/screens/more/my_credits.dart';
 
 class More extends StatelessWidget {
   const More({super.key});
@@ -10,8 +13,7 @@ class More extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     push(Widget route) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => route));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => route));
     }
 
     return Scaffold(
@@ -28,14 +30,15 @@ class More extends StatelessWidget {
               )),
             ),
             ListTile(
+              leading: const Icon(Icons.wallet_rounded),
+              title: const Text("My Credits"),
+              onTap: () => push(const MyCredits()),
+            ),
+            const Divider(),
+            ListTile(
               leading: const Icon(Icons.newspaper_rounded),
               title: const Text("Articles"),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.calculate_rounded),
-              title: const Text("Emissions Calculator"),
-              onTap: () {},
+              onTap: () => push(const Articles()),
             ),
             const Spacer(flex: 1),
             const Divider(),
@@ -52,7 +55,7 @@ class More extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.info),
               title: const Text("App Info"),
-              onTap: () {},
+              onTap: () => push(const AppInfo()),
             ),
           ],
         ),

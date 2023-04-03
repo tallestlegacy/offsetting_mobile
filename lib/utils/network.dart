@@ -9,7 +9,7 @@ Future<dynamic> fetch(String url) async {
   return jsonDecode(response.body);
 }
 
-Future<dynamic> getProjects() async {
+Future<List> getProjects() async {
   final response = await fetch(projectsUrl);
   return response;
 }

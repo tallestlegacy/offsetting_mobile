@@ -12,10 +12,15 @@ class DataSources extends StatelessWidget {
       body: ListView(
         children: const [
           ListTile(
-            leading: Icon(Icons.api),
+            leading: Icon(Icons.bar_chart),
             title: Text("https://global-warming.org/"),
             subtitle: Text("Climate change data"),
-          )
+          ),
+          ListTile(
+            leading: Icon(Icons.rss_feed_rounded),
+            title: Text("https://www.conservation.org/blog/rss-feeds"),
+            subtitle: Text("RSS Feed"),
+          ),
         ],
       ),
     );

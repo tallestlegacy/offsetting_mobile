@@ -51,6 +51,8 @@ dependencies:
   sliver_app_bar_title: ^1.0.1+7
   cloud_firestore: ^4.4.3
   intl: ^0.17.0
+  dart_rss: ^2.0.1
+  url_launcher: ^6.1.10
 
 dev_dependencies:
   flutter_test:
